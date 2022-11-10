@@ -1,0 +1,215 @@
+﻿@model Filippov.Models.AccountSettingsViewModel
+
+<h2>Account Settings</h2>
+<p class="text-danger">@ViewBag.ErrorMessage</p>
+
+@using (Html.BeginForm("AccountSettings", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (ViewBag.showForm)
+    {
+
+        if (this.User.IsInRole("admin"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.FIO, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FIO, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Adres, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Job_status, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Job_status, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Salary, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pasport, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Pasport, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.SNILS, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.SNILS, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.INN, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.INN, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Filial, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Filial, new { @class = "form-control" })
+                </div>
+            </div>
+            
+           
+        }
+
+
+
+
+
+        if (this.User.IsInRole("employee"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.FIO, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FIO, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Adres, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Job_status, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Job_status, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Salary, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Filial, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Filial, new { @class = "form-control" })
+                </div>
+            </div>
+           
+        }
+
+
+
+
+
+
+
+        if (this.User.IsInRole("custumer"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.FIO, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FIO, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Adres, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Adres, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pasport, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Pasport, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.SNILS, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.SNILS, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.INN, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.INN, new { @class = "form-control" })
+                </div>
+            </div>
+           
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Save" />
+            </div>
+        </div>
+    }
+    else
+    {
+        <p class="text-success">@ViewBag.StatusMessage</p>
+
+    }
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

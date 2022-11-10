@@ -1,0 +1,90 @@
+﻿@model Filippov.Models.Dogovor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dogovor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarif)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarif)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strah_summa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strah_summa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strah_platej)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strah_platej)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_start)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_start)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_end)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_end)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers1.FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers1.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strah_sluchai.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strah_sluchai.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strah_type.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strah_type.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

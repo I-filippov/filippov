@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar(max)" />
+          <Property Name="Pasport" Type="nvarchar(max)" />
+          <Property Name="SNILS" Type="nvarchar(max)" />
+          <Property Name="INN" Type="nvarchar(max)" />
+          <Property Name="Job_status" Type="nvarchar(max)" />
+          <Property Name="Filial" Type="nvarchar(max)" />
+          <Property Name="Date_start" Type="nvarchar(max)" />
+          <Property Name="Salary" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_custumer" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id_employee" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id_strah_sluchai" Type="int" Nullable="false" />
+          <Property Name="Id_strah_type" Type="int" />
+          <Property Name="Tarif" Type="money" Nullable="false" />
+          <Property Name="Strah_summa" Type="money" Nullable="false" />
+          <Property Name="Strah_platej" Type="money" Nullable="false" />
+          <Property Name="Date_start" Type="date" Nullable="false" />
+          <Property Name="Date_end" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Filial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Strah_sluchai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_strah_type" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Strah_type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1">
+          <End Role="Strah_type" Type="Self.Strah_type" Multiplicity="1" />
+          <End Role="Strah_sluchai" Type="Self.Strah_sluchai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Strah_sluchai">
+              <PropertyRef Name="Id_strah_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_custumer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK3">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4">
+          <End Role="Strah_sluchai" Type="Self.Strah_sluchai" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_sluchai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_strah_sluchai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK6">
+          <End Role="Strah_type" Type="Self.Strah_type" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_strah_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Filial" EntityType="Self.Filial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strah_sluchai" EntityType="Self.Strah_sluchai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strah_type" EntityType="Self.Strah_type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK1" Association="Self.FK1">
+            <End Role="Strah_type" EntitySet="Strah_type" />
+            <End Role="Strah_sluchai" EntitySet="Strah_sluchai" />
+          </AssociationSet>
+          <AssociationSet Name="FK2" Association="Self.FK2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK3" Association="Self.FK3">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK4" Association="Self.FK4">
+            <End Role="Strah_sluchai" EntitySet="Strah_sluchai" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK6" Association="Self.FK6">
+            <End Role="Strah_type" EntitySet="Strah_type" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetUserRoles" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRoles" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pasport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SNILS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="INN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Job_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Filial" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date_start" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserRoles" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK2" FromRole="AspNetUsers" ToRole="Dogovor" />
+          <NavigationProperty Name="Dogovor1" Relationship="Self.FK3" FromRole="AspNetUsers" ToRole="Dogovor" />
+        </EntityType>
+        <EntityType Name="Dogovor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_custumer" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_employee" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_strah_sluchai" Type="Int32" Nullable="false" />
+          <Property Name="Id_strah_type" Type="Int32" />
+          <Property Name="Tarif" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Strah_summa" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Strah_platej" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Date_start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_end" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK2" FromRole="Dogovor" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK3" FromRole="Dogovor" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Strah_sluchai" Relationship="Self.FK4" FromRole="Dogovor" ToRole="Strah_sluchai" />
+          <NavigationProperty Name="Strah_type" Relationship="Self.FK6" FromRole="Dogovor" ToRole="Strah_type" />
+        </EntityType>
+        <EntityType Name="Filial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Strah_sluchai">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_strah_type" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK4" FromRole="Strah_sluchai" ToRole="Dogovor" />
+          <NavigationProperty Name="Strah_type" Relationship="Self.FK1" FromRole="Strah_sluchai" ToRole="Strah_type" />
+        </EntityType>
+        <EntityType Name="Strah_type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dogovor" Relationship="Self.FK6" FromRole="Strah_type" ToRole="Dogovor" />
+          <NavigationProperty Name="Strah_sluchai" Relationship="Self.FK1" FromRole="Strah_type" ToRole="Strah_sluchai" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_custumer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK3">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK4">
+          <End Role="Strah_sluchai" Type="Self.Strah_sluchai" Multiplicity="1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_sluchai">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_strah_sluchai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK6">
+          <End Role="Strah_type" Type="Self.Strah_type" Multiplicity="0..1" />
+          <End Role="Dogovor" Type="Self.Dogovor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dogovor">
+              <PropertyRef Name="Id_strah_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK1">
+          <End Role="Strah_type" Type="Self.Strah_type" Multiplicity="1" />
+          <End Role="Strah_sluchai" Type="Self.Strah_sluchai" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strah_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Strah_sluchai">
+              <PropertyRef Name="Id_strah_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Dogovor" EntityType="Self.Dogovor" />
+          <EntitySet Name="Filial" EntityType="Self.Filial" />
+          <EntitySet Name="Strah_sluchai" EntityType="Self.Strah_sluchai" />
+          <EntitySet Name="Strah_type" EntityType="Self.Strah_type" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK2" Association="Self.FK2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK3" Association="Self.FK3">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK4" Association="Self.FK4">
+            <End Role="Strah_sluchai" EntitySet="Strah_sluchai" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK6" Association="Self.FK6">
+            <End Role="Strah_type" EntitySet="Strah_type" />
+            <End Role="Dogovor" EntitySet="Dogovor" />
+          </AssociationSet>
+          <AssociationSet Name="FK1" Association="Self.FK1">
+            <End Role="Strah_type" EntitySet="Strah_type" />
+            <End Role="Strah_sluchai" EntitySet="Strah_sluchai" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="Model.AspNetUserRoles">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Pasport" ColumnName="Pasport" />
+                <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="Job_status" ColumnName="Job_status" />
+                <ScalarProperty Name="Filial" ColumnName="Filial" />
+                <ScalarProperty Name="Date_start" ColumnName="Date_start" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dogovor">
+            <EntityTypeMapping TypeName="Model.Dogovor">
+              <MappingFragment StoreEntitySet="Dogovor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_custumer" ColumnName="Id_custumer" />
+                <ScalarProperty Name="Id_employee" ColumnName="Id_employee" />
+                <ScalarProperty Name="Id_strah_sluchai" ColumnName="Id_strah_sluchai" />
+                <ScalarProperty Name="Id_strah_type" ColumnName="Id_strah_type" />
+                <ScalarProperty Name="Tarif" ColumnName="Tarif" />
+                <ScalarProperty Name="Strah_summa" ColumnName="Strah_summa" />
+                <ScalarProperty Name="Strah_platej" ColumnName="Strah_platej" />
+                <ScalarProperty Name="Date_start" ColumnName="Date_start" />
+                <ScalarProperty Name="Date_end" ColumnName="Date_end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Filial">
+            <EntityTypeMapping TypeName="Model.Filial">
+              <MappingFragment StoreEntitySet="Filial">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strah_sluchai">
+            <EntityTypeMapping TypeName="Model.Strah_sluchai">
+              <MappingFragment StoreEntitySet="Strah_sluchai">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_strah_type" ColumnName="Id_strah_type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strah_type">
+            <EntityTypeMapping TypeName="Model.Strah_type">
+              <MappingFragment StoreEntitySet="Strah_type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

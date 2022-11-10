@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink("Пользователи", "Index", "AspNetUsers")<br />
+        @Html.ActionLink("Роли", "Index", "AspNetRoles")<br />
+        @Html.ActionLink("Назначение ролей", "Index", "AspNetUserRoles")<br />
+
+    </div>
+
+    <div>
+
+        @Html.ActionLink("Договоры", "Index", "Dogovors")<br />
+
+        @Html.ActionLink("Филиалы", "Index", "Filials")<br />
+        @Html.ActionLink("Страховые случаи", "Index", "Strah_sluchai")<br />
+        @Html.ActionLink("Типы страхования", "Index", "Strah_type")<br />
+    </div>
+</body>
+</html>

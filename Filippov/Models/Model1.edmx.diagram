@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96bf86269806431daf53bb15fce9a547" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserRoles" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Dogovor" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Filial" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Strah_sluchai" Width="1.5" PointX="3.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Strah_type" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
